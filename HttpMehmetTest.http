@@ -1,0 +1,50 @@
+### Benutzer erstellen
+POST http://localhost:3443/api/user
+Content-Type: application/json
+
+{
+  "name": "testuser@example.com",
+  "password": "securePassword123"
+}
+
+### Benutzer einloggen (richtig)
+POST http://localhost:3443/api/login
+Content-Type: application/json
+
+{
+  "name": "testuser@example.com",
+  "password": "securePassword123"
+}
+
+### Benutzer einloggen (falsch)
+POST http://localhost:3443/api/login
+Content-Type: application/json
+
+{
+  "name": "wronguser@example.com",
+  "password": "wrongPassword"
+}
+
+### Benutzer ausloggen
+DELETE http://localhost:3443/api/login
+Authorization: Bearer <insert_your_token_here>
+
+### E-Mail-Bestätigung
+GET http://localhost:3443/api/email/confirm-email?token=<insert_your_token_here>
+
+### Passwort zurücksetzen anfordern
+POST http://localhost:3443/api/email/forgot-password
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com"
+}
+
+### Passwort zurücksetzen
+POST http://localhost:3443/api/email/reset-password
+Content-Type: application/json
+
+{
+  "token": "<insert_reset_token_here>",
+  "newPassword": "newSecurePassword123"
+}
